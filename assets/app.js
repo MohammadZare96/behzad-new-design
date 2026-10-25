@@ -154,9 +154,9 @@
   /* ---------- Lab ---------- */
   var people = [];
 
-  function personCard(p, featured) {
+  function personCard(p, featured, inCarousel) {
     var idx = people.push(p) - 1;
-    return '<button type="button" class="person reveal' + (featured ? " featured" : "") + '" data-person="' + idx + '">' +
+    return '<button type="button" class="person' + (inCarousel ? "" : " reveal") + (featured ? " featured" : "") + '" data-person="' + idx + '">' +
       '<span class="person-photo"><img src="' + esc(p.photo) + '" alt="" loading="lazy"></span>' +
       '<span class="person-info">' +
       '<span class="person-name">' + esc(p.name) + "</span>" +
@@ -169,16 +169,21 @@
   function renderLab() {
     var st = SITE.students || { phd: [], msc: [], bsc: [] };
     var html = "";
-    function head(title, n) {
-      return '<div class="lab-group-head"><h3>' + title + "</h3><span>" + n + "</span></div>";
+    function head(title, n, extra) {
+      return '<div class="lab-group-head"><h3>' + title + "</h3><span>" + n + "</span>" + (extra || "") + "</div>";
     }
+    var carouselNav = '<div class="carousel-nav">' +
+      '<button type="button" class="icon-btn" data-carousel-prev aria-label="Previous students"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>' +
+      '<button type="button" class="icon-btn" data-carousel-next aria-label="Next students"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>' +
+      "</div>";
     if (st.phd.length) {
       html += '<div class="lab-group">' + head("Ph.D. students", st.phd.length) +
         st.phd.map(function (p) { p.label = "Research summary"; return personCard(p, st.phd.length === 1); }).join("") + "</div>";
     }
     if (st.msc.length) {
-      html += '<div class="lab-group">' + head("M.Sc. students", st.msc.length) + '<div class="people">' +
-        st.msc.map(function (p) { p.label = "Thesis summary"; return personCard(p, false); }).join("") + "</div></div>";
+      html += '<div class="lab-group carousel" data-carousel>' + head("M.Sc. students", st.msc.length, carouselNav) +
+        '<div class="carousel-track" tabindex="0" aria-label="M.Sc. students">' +
+        st.msc.map(function (p) { p.label = "Thesis summary"; return personCard(p, false, true); }).join("") + "</div></div>";
     }
     if (st.bsc.length) {
       html += '<div class="lab-group">' + head("B.Sc. projects", st.bsc.length) + '<ul class="bsc-list">' +
@@ -189,6 +194,58 @@
         }).join("") + "</ul></div>";
     }
     $("#lab-groups").innerHTML = html;
+  }
+
+  /* ---------- Carousel ---------- */
+  function setupCarousels() {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("[data-carousel]").forEach(function (root) {
+      var track = root.querySelector(".carousel-track");
+      var paused = false, visible = true, timer = null;
+
+      function stepSize() {
+        var card = track.firstElementChild;
+        if (!card) return track.clientWidth;
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return card.getBoundingClientRect().width + gap;
+      }
+      function atEnd() { return track.scrollLeft + track.clientWidth >= track.scrollWidth - 4; }
+      function next() {
+        if (atEnd()) track.scrollTo({ left: 0, behavior: "smooth" });
+        else track.scrollBy({ left: stepSize(), behavior: "smooth" });
+      }
+      function prev() {
+        if (track.scrollLeft <= 4) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
+        else track.scrollBy({ left: -stepSize(), behavior: "smooth" });
+      }
+
+      root.querySelector("[data-carousel-next]").addEventListener("click", function () { next(); restart(); });
+      root.querySelector("[data-carousel-prev]").addEventListener("click", function () { prev(); restart(); });
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight") { e.preventDefault(); next(); restart(); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); prev(); restart(); }
+      });
+
+      // Autoplay: only when the track overflows, is on screen and nobody is interacting
+      function tick() {
+        if (!paused && visible && !document.hidden && track.scrollWidth > track.clientWidth + 4) next();
+      }
+      function restart() {
+        if (reduce) return;
+        clearInterval(timer);
+        timer = setInterval(tick, 3500);
+      }
+      root.addEventListener("mouseenter", function () { paused = true; });
+      root.addEventListener("mouseleave", function () { paused = false; });
+      root.addEventListener("focusin", function () { paused = true; });
+      root.addEventListener("focusout", function () { paused = false; });
+      track.addEventListener("pointerdown", function () { paused = true; });
+      track.addEventListener("touchend", function () { setTimeout(function () { paused = false; }, 4000); }, { passive: true });
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }).observe(track);
+      }
+      restart();
+    });
   }
 
   /* ---------- Links ---------- */
@@ -363,6 +420,7 @@
   renderTeaching();
   renderLab();
   renderLinks();
+  setupCarousels();
   setupModal();
   setupScope();
   setupTheme();

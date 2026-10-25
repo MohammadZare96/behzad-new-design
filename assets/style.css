@@ -1148,6 +1148,33 @@ mark {
   gap: 16px;
 }
 
+.carousel-nav {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 3 * 16px) / 4);
+  gap: 16px;
+  margin: -6px -4px;
+  padding: 6px 4px 10px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track > .person {
+  scroll-snap-align: start;
+}
+
 .person {
   display: flex;
   flex-direction: column;
@@ -1601,6 +1628,10 @@ mark {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .carousel-track {
+    grid-auto-columns: calc((100% - 2 * 16px) / 3);
+  }
+
   .portrait {
     aspect-ratio: 1 / 1;
   }
@@ -1679,6 +1710,11 @@ mark {
 
   .people {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .carousel-track {
+    grid-auto-columns: calc((100% - 12px) / 2);
     gap: 12px;
   }
 
