@@ -1423,9 +1423,6 @@ mark {
 
 .campus img {
   width: 100%;
-  aspect-ratio: 21 / 7;
-  object-fit: cover;
-  object-position: 50% 60%;
   border-radius: var(--radius);
   background: var(--surface-2);
 }
@@ -1704,10 +1701,6 @@ mark {
 
   .contact-details {
     grid-template-columns: 1fr;
-  }
-
-  .campus img {
-    aspect-ratio: 16 / 9;
   }
 
   .photo-pair img {
