@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Behzad Ahi | Sharif University of Technology</title>
+    <meta name="description" content="Behzad Ahi, Assistant Professor of Electrical Engineering at Sharif University of Technology and director of the Data Fusion and Control Systems Lab. Research, publications, courses and students." />
+    <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0D1015" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Behzad Ahi | Sharif University of Technology" />
+    <meta property="og:description" content="Assistant Professor of Electrical Engineering at Sharif University of Technology, director of the Data Fusion and Control Systems Lab." />
+    <meta property="og:url" content="https://sharif.edu/~ahi/" />
+    <meta property="og:image" content="https://sharif.edu/~ahi/assets/img/portrait.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar" id="top">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="#top" aria-label="Behzad Ahi — home">
+          <img class="brand-logo logo-on-light" src="assets/img/sharif-logo-dark.png" alt="" width="34" height="34" />
+          <img class="brand-logo logo-on-dark" src="assets/img/sharif-logo-light.png" alt="" width="34" height="34" />
+          <span class="brand-text">
+            <span class="brand-name">Behzad Ahi</span>
+            <span class="brand-sub">Sharif University of Technology</span>
+          </span>
+        </a>
+
+        <nav class="nav" id="nav" aria-label="Main">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#lab">Lab</a>
+          <a href="#resources">Resources</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="topbar-actions">
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+            <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" /></svg>
+            <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6Z" /></svg>
+          </button>
+          <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero wrap">
+        <div class="hero-text">
+          <p class="eyebrow">Assistant Professor · Electrical Engineering</p>
+          <h1 class="hero-name">Behzad <em>Ahi</em></h1>
+          <p class="hero-lead">
+            Director of the <strong>Data Fusion and Control Systems Lab</strong> at Sharif University of Technology,
+            working on sensor fusion, autonomous vehicles, reinforcement learning, flight control and robotics.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="mailto:ahi@sharif.edu">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg>
+              ahi@sharif.edu
+            </a>
+            <a class="btn" href="https://scholar.google.com/citations?user=Q7i12DIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">
+              Google Scholar
+              <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+            </a>
+          </div>
+          <dl class="stats" id="stats"></dl>
+        </div>
+
+        <figure class="hero-figure">
+          <div class="portrait">
+            <img src="assets/img/portrait.jpg" alt="Behzad Ahi in his office" width="600" height="750" />
+          </div>
+
+          <div class="scope" aria-label="Interactive step response of a second-order system">
+            <div class="scope-head">
+              <span class="scope-title">Step response</span>
+              <span class="scope-read" id="scope-read">ζ = 0.45 · overshoot 20.5%</span>
+            </div>
+            <svg class="scope-plot" id="scope-plot" viewBox="0 0 320 150" preserveAspectRatio="none" aria-hidden="true">
+              <g class="scope-grid" id="scope-grid"></g>
+              <line class="scope-ref" x1="0" x2="320" y1="0" y2="0" id="scope-ref" />
+              <path class="scope-curve" id="scope-curve" d="" />
+            </svg>
+            <label class="scope-slider">
+              <span>damping ζ</span>
+              <input type="range" id="zeta" min="0.1" max="1.2" step="0.01" value="0.45" />
+            </label>
+          </div>
+        </figure>
+      </section>
+
+      <!-- About -->
+      <section class="section wrap" id="about">
+        <header class="section-head">
+          <span class="section-num">01</span>
+          <h2>About</h2>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-bio">
+            <p class="about-lead">
+              Behzad Ahi was born in Tehran, Iran, in 1991. Since July 2023 he has been an assistant professor in the
+              Department of Electrical Engineering at Sharif University of Technology.
+            </p>
+            <p>
+              Prior to joining the faculty, he was a postdoctoral researcher granted by the Iran National Science
+              Foundation (INSF) from July 2020 to March 2022. He is currently director of the Data Fusion and Control
+              Systems Lab.
+            </p>
+          </div>
+
+          <ol class="timeline" id="timeline"></ol>
+        </div>
+
+        <div class="photo-pair">
+          <figure>
+            <img src="assets/img/speech.jpg" alt="Behzad Ahi speaking at Sharif University of Technology" loading="lazy" width="1600" height="900" />
+            <figcaption>At Sharif University of Technology</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/lab.jpg" alt="Students working in the Data Fusion and Control Systems Lab" loading="lazy" width="1400" height="785" />
+            <figcaption>Data Fusion and Control Systems Lab</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Research -->
+      <section class="section wrap" id="research">
+        <header class="section-head">
+          <span class="section-num">02</span>
+          <h2>Research</h2>
+          <p class="section-intro">Our work sits where estimation, learning and control meet real autonomous systems.</p>
+        </header>
+        <div class="research-grid" id="research-grid"></div>
+      </section>
+
+      <!-- Publications -->
+      <section class="section wrap" id="publications">
+        <header class="section-head">
+          <span class="section-num">03</span>
+          <h2>Publications</h2>
+          <a class="section-link" href="https://scholar.google.com/citations?user=Q7i12DIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">
+            Full list on Google Scholar
+            <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+          </a>
+        </header>
+
+        <div class="pub-controls">
+          <div class="segmented" role="tablist" aria-label="Filter publications" id="pub-filter"></div>
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></svg>
+            <input type="search" id="pub-search" placeholder="Search title, venue or author" aria-label="Search publications" />
+          </label>
+        </div>
+        <div class="pub-list" id="pub-list" aria-live="polite"></div>
+      </section>
+
+      <!-- Teaching -->
+      <section class="section wrap" id="teaching">
+        <header class="section-head">
+          <span class="section-num">04</span>
+          <h2>Teaching</h2>
+        </header>
+        <div class="teaching-grid" id="teaching-grid"></div>
+      </section>
+
+      <!-- Lab -->
+      <section class="section wrap" id="lab">
+        <header class="section-head">
+          <span class="section-num">05</span>
+          <h2>Lab members</h2>
+          <p class="section-intro">Students of the Data Fusion and Control Systems Lab. Select a name to read the project summary.</p>
+        </header>
+        <div id="lab-groups"></div>
+      </section>
+
+      <!-- Resources -->
+      <section class="section wrap" id="resources">
+        <header class="section-head">
+          <span class="section-num">06</span>
+          <h2>Useful links</h2>
+        </header>
+        <div class="links-grid" id="links-grid"></div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section wrap" id="contact">
+        <header class="section-head">
+          <span class="section-num">07</span>
+          <h2>Contact</h2>
+        </header>
+
+        <div class="contact">
+          <div class="contact-main">
+            <p class="contact-lead">Prospective students and collaborators are welcome to get in touch.</p>
+            <a class="contact-email" href="mailto:ahi@sharif.edu">ahi@sharif.edu</a>
+          </div>
+          <dl class="contact-details">
+            <div>
+              <dt>Office</dt>
+              <dd>Room 315 East, 3rd Floor<br />Department of Electrical Engineering</dd>
+            </div>
+            <div>
+              <dt>Address</dt>
+              <dd>Sharif University of Technology, Azadi Ave.<br />P.O. Box 1155-4363, Tehran, Iran</dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href="tel:+982166165982">+98 21 6616 5982</a></dd>
+            </div>
+            <div>
+              <dt>Web</dt>
+              <dd><a href="https://ee.sharif.edu/~ahi" target="_blank" rel="noopener noreferrer">ee.sharif.edu/~ahi</a></dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="campus">
+          <img src="assets/img/campus.jpg" alt="Sharif University of Technology campus" loading="lazy" width="1600" height="900" />
+        </figure>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <span>© <span id="year">2026</span> Behzad Ahi · Data Fusion and Control Systems Lab</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+
+    <dialog class="modal" id="summary-modal" aria-labelledby="modal-name">
+      <div class="modal-inner">
+        <button class="icon-btn modal-close" type="button" data-close aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+        <p class="eyebrow" id="modal-label"></p>
+        <h3 class="modal-name" id="modal-name"></h3>
+        <p class="modal-meta" id="modal-meta"></p>
+        <p class="modal-text" id="modal-text"></p>
+      </div>
+    </dialog>
+
+    <script src="assets/data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
