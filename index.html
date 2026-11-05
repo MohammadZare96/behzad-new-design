@@ -241,8 +241,23 @@
           </dl>
         </div>
 
-        <figure class="campus">
-          <img src="assets/img/campus.jpg" alt="Sharif University of Technology campus" loading="lazy" width="1600" height="900" />
+        <figure class="gallery" id="gallery" aria-roledescription="carousel" aria-label="Photos">
+          <div class="gallery-frame">
+            <div class="gallery-slide is-active">
+              <img src="assets/img/campus.jpg" alt="Main gate of Sharif University of Technology" loading="lazy" width="1600" height="900" />
+            </div>
+            <div class="gallery-slide is-fit" aria-hidden="true">
+              <img class="gallery-backdrop" src="assets/img/ee-faculty-2024.jpg" alt="" loading="lazy" />
+              <img src="assets/img/ee-faculty-2024.jpg" alt="Group photo of the faculty members of the Department of Electrical Engineering, Sharif University of Technology, July 2024" loading="lazy" width="2000" height="934" />
+            </div>
+          </div>
+          <figcaption class="gallery-bar">
+            <span class="gallery-captions">
+              <span class="gallery-caption is-active">Main gate, Sharif University of Technology</span>
+              <span class="gallery-caption" aria-hidden="true">Faculty members of the Department of Electrical Engineering · July 2024</span>
+            </span>
+            <span class="gallery-dots" id="gallery-dots"></span>
+          </figcaption>
         </figure>
       </section>
     </main>

@@ -233,7 +233,7 @@
       function restart() {
         if (reduce) return;
         clearInterval(timer);
-        timer = setInterval(tick, 3500);
+        timer = setInterval(tick, 2500);
       }
       root.addEventListener("mouseenter", function () { paused = true; });
       root.addEventListener("mouseleave", function () { paused = false; });
@@ -246,6 +246,60 @@
       }
       restart();
     });
+  }
+
+  /* ---------- Photo gallery (contact section) ---------- */
+  function setupGallery() {
+    var root = $("#gallery");
+    if (!root) return;
+    var slides = [].slice.call(root.querySelectorAll(".gallery-slide"));
+    var caps = [].slice.call(root.querySelectorAll(".gallery-caption"));
+    var dotsWrap = $("#gallery-dots", root);
+    if (slides.length < 2) return;
+
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var current = 0, paused = false, visible = true, timer = null;
+
+    dotsWrap.innerHTML = slides.map(function (s, k) {
+      return '<button type="button" aria-label="Show photo ' + (k + 1) + " of " + slides.length + '"' +
+        (k === 0 ? ' aria-current="true"' : "") + "></button>";
+    }).join("");
+    var dots = [].slice.call(dotsWrap.children);
+
+    function show(n) {
+      current = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) {
+        s.classList.toggle("is-active", k === current);
+        s.setAttribute("aria-hidden", k === current ? "false" : "true");
+      });
+      caps.forEach(function (c, k) {
+        c.classList.toggle("is-active", k === current);
+        c.setAttribute("aria-hidden", k === current ? "false" : "true");
+      });
+      dots.forEach(function (d, k) {
+        if (k === current) d.setAttribute("aria-current", "true");
+        else d.removeAttribute("aria-current");
+      });
+    }
+    function restart() {
+      if (reduce) return;
+      clearInterval(timer);
+      timer = setInterval(function () {
+        if (!paused && visible && !document.hidden) show(current + 1);
+      }, 6000);
+    }
+
+    dots.forEach(function (d, k) {
+      d.addEventListener("click", function () { show(k); restart(); });
+    });
+    root.addEventListener("mouseenter", function () { paused = true; });
+    root.addEventListener("mouseleave", function () { paused = false; });
+    root.addEventListener("focusin", function () { paused = true; });
+    root.addEventListener("focusout", function () { paused = false; });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }).observe(root);
+    }
+    restart();
   }
 
   /* ---------- Links ---------- */
@@ -421,6 +475,7 @@
   renderLab();
   renderLinks();
   setupCarousels();
+  setupGallery();
   setupModal();
   setupScope();
   setupTheme();

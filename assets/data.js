@@ -58,6 +58,11 @@ window.SITE = {
       "place": "Sharif University of Technology"
     },
     {
+      "years": "2019–2020",
+      "title": "Visiting Researcher",
+      "place": "ITMO University, Saint Petersburg"
+    },
+    {
       "years": "2020–2022",
       "title": "Postdoctoral Researcher",
       "place": "Granted by Iran National Science Foundation (INSF)"
@@ -229,6 +234,13 @@ window.SITE = {
         "details": "Tehran, Iran, pp. 55-59",
         "year": 2025,
         "award": "Best Paper Award"
+      },
+      {
+        "authors": "M. Gilak, M. Zarei, S. Samiei, M. H. Basiri, M. M. Jalalmaab, B. Ahi, and H. Haddadpour",
+        "title": "An energy compensation approach to variable stiffness single leg jumping",
+        "venue": "34th International Conference on Electrical Engineering (ICEE)",
+        "details": "Tehran, Iran, pp. 1035-1040",
+        "year": 2026
       }
     ]
   },
